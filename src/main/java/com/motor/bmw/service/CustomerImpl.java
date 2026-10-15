@@ -1,5 +1,7 @@
 package com.motor.bmw.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,12 @@ public class CustomerImpl implements CustomerService{
 	public Customer create(Customer customer) {
 		System.out.println(customer);
 		return repos.save(customer);
+	}
+
+	@Override
+	public List<Customer> findAll() {
+		
+		return repos.findAll();
 	}
 
 }

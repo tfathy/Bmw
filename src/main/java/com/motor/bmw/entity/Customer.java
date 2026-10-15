@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,14 +18,15 @@ public class Customer {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name="first_name")
+	@Column(name="first_name",nullable=false)
 	private String fname;
 	
 	@Column(name="last_name")
 	private String lname;
 	 
-	@Column(name="CNT_ID")
-	private Integer cntId;
+	@ManyToOne() 
+	@JoinColumn(name="CNT_ID")
+	private Country country;
 
 	public int getId() {
 		return id;
@@ -49,17 +52,17 @@ public class Customer {
 		this.lname = lname;
 	}
 
-	public Integer getCntId() {
-		return cntId;
+	public Country getCountry() {
+		return country;
 	}
 
-	public void setCntId(Integer cntId) {
-		this.cntId = cntId;
+	public void setCountry(Country country) {
+		this.country = country;
 	}
 
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", fname=" + fname + ", lname=" + lname + ", cntId=" + cntId + "]";
+		return "Customer [id=" + id + ", fname=" + fname + ", lname=" + lname + ", country=" + country + "]";
 	}
 	
 	
